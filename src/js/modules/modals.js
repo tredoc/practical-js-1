@@ -37,7 +37,7 @@ const modals = () => {
         }, time)
     }
 
-    showModalByTyme('.popup', 60000)
+    //showModalByTyme('.popup', 60000)
 }
 
 export default modals
