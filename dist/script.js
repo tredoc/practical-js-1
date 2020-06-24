@@ -17864,22 +17864,21 @@ var forms = function forms() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            document.querySelector('.status').textContent = message.loading;
-            _context.next = 3;
+            _context.next = 2;
             return regeneratorRuntime.awrap(fetch(url, {
               method: 'POST',
               body: data
             }));
 
-          case 3:
+          case 2:
             result = _context.sent;
-            _context.next = 6;
+            _context.next = 5;
             return regeneratorRuntime.awrap(result.text());
 
-          case 6:
+          case 5:
             return _context.abrupt("return", _context.sent);
 
-          case 7:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -17893,11 +17892,11 @@ var forms = function forms() {
       var statusMessage = document.createElement('div');
       item.append(statusMessage);
       var formData = new FormData(item);
-      postData('', formData).then(function (result) {
+      postData('https://my-json-server.typicode.com/tredoc/test-post', formData).then(function (result) {
         console.log(result);
         statusMessage.textContent = message.success;
-      }).catch(function () {
-        console.log('failed');
+      }).catch(function (err) {
+        console.log(err);
         statusMessage.textContent = message.failure;
       }).finally(function () {
         clearInputs();

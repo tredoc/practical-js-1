@@ -18,7 +18,7 @@ const forms = () => {
     }
 
     const postData = async (url, data) => {
-        document.querySelector('.status').textContent = message.loading
+        
         const result = await fetch(url, {
             method: 'POST',
             body: data
@@ -34,12 +34,12 @@ const forms = () => {
 
             const formData = new FormData(item)
 
-            postData('', formData)
+            postData('https://my-json-server.typicode.com/tredoc/test-post', formData)
                 .then(result => {
                     console.log(result)
                     statusMessage.textContent = message.success
-                }).catch(() => {
-                    console.log('failed')
+                }).catch((err) => {
+                    console.log(err)
                     statusMessage.textContent = message.failure
                 }).finally(() => {
                     clearInputs()
