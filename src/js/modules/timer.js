@@ -14,13 +14,7 @@ const timer = (id, deadline) => {
               hours = Math.floor((t/(1000 * 60 * 60)) % 24),
               days = Math.floor((t/(1000 * 60 * 60 * 24)))
 
-        return {
-            'total': t,
-            'days': days,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
-        }
+        return {t, days, hours, minutes, seconds}
     }
 
     const setClock = (selector, endtime) => {
