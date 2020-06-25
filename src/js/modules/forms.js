@@ -1,15 +1,12 @@
 import { post } from "jquery"
+import { checkNuminputs } from "./utils"
 
-const forms = () => {
+const forms = (state) => {
     const form = document.querySelectorAll('form')
     const inputs = document.querySelectorAll('input')
     const inputsTelephone = document.querySelectorAll('input[name="user_phone"]')
     
-    inputsTelephone.forEach(item => {
-        item.addEventListener('input', (evt) => {
-            item.value = item.value.replace(/\D/, '')
-        })
-    })
+    checkNuminputs('input[name="user_phone"]')
 
     const message = {
         loading: 'Загрузка...',
@@ -18,7 +15,6 @@ const forms = () => {
     }
 
     const postData = async (url, data) => {
-        
         const result = await fetch(url, {
             method: 'POST',
             body: data
@@ -33,6 +29,11 @@ const forms = () => {
             item.append(statusMessage)
 
             const formData = new FormData(item)
+            if (item.dataset.calc === 'end') {
+                for (const key in state) {
+                    formData.append(key, state[key])
+                }
+            }
 
             postData('https://my-json-server.typicode.com/tredoc/test-post', formData)
                 .then(result => {
